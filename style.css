@@ -111,15 +111,12 @@ nav {
 .section-white { background: var(--white);   padding: 4rem 0; }
 .section-light { background: var(--surface); padding: 4rem 0; }
 
-.section-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 1.75rem;
-}
+/* .section-label retired — replaced by .eyebrow + h2 pattern */
+
+/* Consistent section heading rhythm */
+h2 { margin-bottom: 1.25rem; }
+.section-white h2,
+.section-light h2 { margin-bottom: 1rem; }
 
 .section-intro {
   font-size: 0.95rem;
