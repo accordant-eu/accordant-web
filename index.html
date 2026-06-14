@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Accordant — AI projects by Johan Hellman</title>
-  <meta name="description" content="Personal projects exploring practical uses of AI in finance, tax, investment, and adjacent areas. AI as builder and as product." />
+  <meta name="description" content="Personal projects exploring practical uses of AI in finance, tax, and investment. AI as builder and as product." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet" />
@@ -12,13 +12,14 @@
 </head>
 <body>
 
+  <!-- ─── Nav ──────────────────────────────────────────────────────────── -->
   <nav>
     <div class="nav-inner">
       <span class="wordmark">Accordant</span>
       <div class="nav-links">
-        <a href="https://x.com/johan_hellman" class="nav-link" target="_blank">X ↗</a>
-        <a href="https://linkedin.com/in/jhellman" class="nav-link" target="_blank">LinkedIn ↗</a>
-        <a href="https://github.com/accordant-eu" class="nav-link" target="_blank">GitHub ↗</a>
+        <a href="https://x.com/johan_hellman" class="nav-link" target="_blank">X</a>
+        <a href="https://linkedin.com/in/jhellman" class="nav-link" target="_blank">LinkedIn</a>
+        <a href="https://github.com/accordant-eu" class="nav-link" target="_blank">GitHub</a>
       </div>
     </div>
   </nav>
@@ -26,25 +27,28 @@
   <!-- ─── Hero ─────────────────────────────────────────────────────────── -->
   <section class="hero">
     <div class="container">
+      <p class="eyebrow-light">Johan Hellman · Stockholm / Madrid</p>
       <h1>AI as the team.<br>AI as the product.</h1>
       <p class="lead">
         Accordant is a personal workshop exploring what happens when AI is
         taken seriously — not as a coding assistant bolted onto an existing
-        workflow, but as the primary builder, operator, and analytical
-        engine for real problems in finance and tax.
+        workflow, but as the primary builder, operator, and analytical engine
+        for real problems in finance and tax.
       </p>
-      <p class="byline">— Johan Hellman, Stockholm / Madrid</p>
+      <a href="https://ran.accordant.eu" class="hero-cta">
+        Try Rán — Spanish IRPF explainer <span class="cta-arrow">→</span>
+      </a>
     </div>
   </section>
 
   <!-- ─── Projects ─────────────────────────────────────────────────────── -->
   <section class="section-white">
     <div class="container">
-      <p class="eyebrow">Open source</p>
+      <p class="eyebrow">What I'm building</p>
       <h2>Projects</h2>
+
       <div class="project-list">
 
-        <!-- Rán -->
         <div class="project-card">
           <div class="project-meta">
             <span class="project-tag">Tax · Spain</span>
@@ -52,26 +56,22 @@
           </div>
           <h3>Rán — IRPF explainer</h3>
           <p>
-            Spain's annual tax return (Modelo 100) is four pages of AEAT
-            jargon that most filers sign without understanding. Rán takes
-            the draft PDF and explains it in plain language: what every
-            figure means, how the calculation works, what's worth a second
-            look. Designed for expat professionals and international
-            families navigating cross-border complexity.
+            Spain's annual tax return (Modelo 100) is four pages of AEAT jargon
+            that most filers sign without understanding. Rán takes the draft PDF
+            and explains everything in plain language: what every figure means,
+            how the calculation works, what's worth a second look. Built for
+            expat professionals and international families navigating cross-border
+            complexity.
           </p>
-          <p class="project-detail">
-            Claude (Sonnet 4.6) is the analytical engine. Zero data
-            retention — PDFs are processed in memory, never written to
-            disk. Backend is open source and intentionally short enough
-            to audit in five minutes.
-          </p>
+          <div class="project-tech">
+            Claude Sonnet 4.6 · Zero data retention · Open-source backend
+          </div>
           <div class="project-links">
-            <a href="https://ran.accordant.eu" class="project-link primary">ran.accordant.eu ↗</a>
-            <a href="https://github.com/accordant-eu/ran-web" class="project-link secondary">GitHub ↗</a>
+            <a href="https://ran.accordant.eu" class="btn-project">Open Rán →</a>
+            <a href="https://github.com/accordant-eu/ran-web" class="project-link-subtle">GitHub ↗</a>
           </div>
         </div>
 
-        <!-- Rebalancing engine -->
         <div class="project-card">
           <div class="project-meta">
             <span class="project-tag">Investment · Portfolio</span>
@@ -79,42 +79,33 @@
           </div>
           <h3>Portfolio rebalancing engine</h3>
           <p>
-            A deterministic portfolio rebalancing engine that started as
-            an offline calculation core and evolved — through AI-driven
-            development — into a fully autonomous live agent. The engine
-            streams portfolio drift in real time, proposes trades, and
-            executes via Alpaca with circuit breaker safety limits and
-            immutable JSONL audit trails.
+            A deterministic portfolio rebalancing engine that started as an
+            offline calculation core and evolved — through AI-driven development
+            — into a fully autonomous live agent. Streams portfolio drift in real
+            time, proposes trades, and executes via Alpaca with circuit breaker
+            safety limits and immutable JSONL audit trails.
           </p>
-          <p class="project-detail">
-            Built entirely through AI-assisted development: architecture
-            decisions, implementation, tests, and documentation all
-            produced through structured LLM collaboration following a
-            custom <code>AGENTS.md</code> ruleset and 38+ ADRs. The live
-            agent is fed signals from the broader OpenClaw intelligence
-            harness.
-          </p>
+          <div class="project-tech">
+            TypeScript · Built entirely by LLM collaboration · 38+ ADRs · Custom <code>AGENTS.md</code> ruleset
+          </div>
           <div class="project-links">
-            <a href="https://github.com/johanhellman/rebalancing-engine" class="project-link secondary">GitHub ↗</a>
+            <a href="https://github.com/johanhellman/rebalancing-engine" class="project-link-subtle">GitHub ↗</a>
           </div>
         </div>
 
-        <!-- Alpaca CLI -->
-        <div class="project-card">
+        <div class="project-card project-card-muted">
           <div class="project-meta">
             <span class="project-tag">Investment · CLI</span>
             <span class="status-maint">Maintenance</span>
           </div>
           <h3>Alpaca CLI</h3>
           <p>
-            A suite of Go command-line tools for the Alpaca API ecosystem:
-            broker operations (accounts, funding, sub-account trading) and
-            retail/paper trading (account info, positions, orders). Built
-            to support the rebalancing engine and day-to-day portfolio
-            management. Installable via Homebrew.
+            Go command-line tools for the Alpaca API: broker operations and
+            retail/paper trading. Built to support the rebalancing engine.
+            Installable via Homebrew.
           </p>
           <div class="project-links">
-            <a href="https://github.com/johanhellman/alpaca-broker-cli" class="project-link secondary">GitHub ↗</a>
+            <a href="https://github.com/johanhellman/alpaca-broker-cli" class="project-link-subtle">GitHub ↗</a>
           </div>
         </div>
 
@@ -122,17 +113,17 @@
     </div>
   </section>
 
-  <!-- ─── Infrastructure ───────────────────────────────────────────────── -->
+  <!-- ─── The harness ──────────────────────────────────────────────────── -->
   <section class="section-light">
     <div class="container">
       <p class="eyebrow">OpenClaw · Agent team</p>
       <h2>The harness</h2>
       <p class="section-intro">
-        The projects above share an AI-native infrastructure built around
-        <a href="https://openclaw.ai" target="_blank">OpenClaw</a>. Rather
-        than a single general-purpose assistant, the setup uses a team of
+        All projects share an AI-native infrastructure built around
+        <a href="https://openclaw.ai" target="_blank">OpenClaw</a>.
+        Rather than one general-purpose assistant, the setup runs a team of
         specialised agents — each with a defined scope, trust level, and
-        operating model. Agents handle work autonomously within their brief;
+        operating model. Agents work autonomously within their brief;
         anything consequential requires explicit approval.
       </p>
 
@@ -142,9 +133,8 @@
             <span class="agent-name">Rufus</span>
             <span class="agent-role">Orchestrator</span>
           </div>
-          <p>Executive assistant and main coordinator. Manages tasks,
-          routes work to specialist agents, maintains continuity across
-          sessions, and acts as the primary interface for day-to-day work.</p>
+          <p>Executive assistant and main coordinator. Manages tasks, routes
+          work to specialists, and maintains continuity across sessions.</p>
         </div>
 
         <div class="agent-card">
@@ -152,9 +142,8 @@
             <span class="agent-name">Heimdal</span>
             <span class="agent-role">Market intelligence</span>
           </div>
-          <p>Runs daily ingestion of investment signals from curated
-          financial accounts on X. Scores relevance, deduplicates, and
-          routes signals downstream for synthesis and portfolio review.</p>
+          <p>Daily ingestion of investment signals from curated financial
+          accounts on X. Scores, deduplicates, and routes signals for review.</p>
         </div>
 
         <div class="agent-card">
@@ -162,9 +151,8 @@
             <span class="agent-name">Munin</span>
             <span class="agent-role">Research router</span>
           </div>
-          <p>Processes bookmarks and research inputs. Classifies content,
-          routes it by topic, and drafts architectural decision records
-          when external content warrants a documented response.</p>
+          <p>Processes bookmarks and research inputs. Classifies, routes, and
+          drafts decision records when external content warrants a response.</p>
         </div>
 
         <div class="agent-card">
@@ -173,8 +161,8 @@
             <span class="agent-role">Portfolio analyst</span>
           </div>
           <p>Portfolio analysis, signal synthesis, and thesis validation.
-          Consumes Heimdal's signals and feeds the rebalancing engine.
-          Reads and analyses autonomously — execution requires approval.</p>
+          Consumes Heimdal's signals, feeds the rebalancing engine.
+          Execution requires explicit approval.</p>
         </div>
 
         <div class="agent-card">
@@ -183,15 +171,13 @@
             <span class="agent-role">Technical reviewer</span>
           </div>
           <p>Reviews plans, specs, and product documents for technical
-          soundness, privacy claims, and strategic alignment. Read-only:
-          produces review files, no external actions.</p>
+          soundness and strategic alignment. Read-only — no external actions.</p>
         </div>
       </div>
 
       <p class="agent-note">
-        Names follow Norse mythology — chosen to set intention, not just
-        label a function. The naming philosophy: pick a name that points
-        toward what an agent should <em>become</em>, not just what it does today.
+        Names follow Norse mythology — chosen to point toward what each agent
+        should <em>become</em>, not just what it does today.
       </p>
     </div>
   </section>
@@ -202,46 +188,53 @@
       <p class="eyebrow">Philosophy</p>
       <h2>The approach</h2>
       <p>
-        Each project here treats AI as a first-class collaborator, not a
-        productivity tool. The rebalancing engine's entire architecture —
-        decisions, tests, documentation, implementation — was produced
-        through structured LLM collaboration. Rán uses Claude as its
-        analytical engine. The OpenClaw harness runs agents that monitor
-        markets, route research, and review code autonomously.
+        Each project treats AI as a first-class collaborator, not a
+        productivity tool. The rebalancing engine's architecture, tests,
+        and documentation were all produced through structured LLM
+        collaboration. Rán uses Claude as its analytical engine. The
+        OpenClaw harness runs agents that monitor markets, route research,
+        and review code autonomously.
       </p>
       <p>
-        The consistent pattern across projects: deterministic, auditable
-        logic at the core, with AI handling the reasoning layer above it.
-        Not AI generating code that humans maintain — AI as an ongoing
-        operator of systems that remain legible and verifiable.
+        The consistent pattern: deterministic, auditable logic at the core,
+        with AI as the reasoning layer above it. Not AI generating code that
+        humans maintain — AI as an ongoing operator of systems that remain
+        legible and verifiable.
       </p>
       <p>
-        Finance and tax are a natural starting point. The rules are largely
-        codified. The stakes are real. The gap between what professionals
-        have access to and what individuals have access to is large. And
-        the problems are concrete enough that you know immediately whether
-        the output is any good.
+        Finance and tax are the starting point because the rules are codified,
+        the stakes are concrete, and the gap between what professionals have
+        access to and what individuals have access to is large. You know
+        immediately whether the output is any good.
       </p>
     </div>
   </section>
 
   <!-- ─── Contact ──────────────────────────────────────────────────────── -->
-  <section class="section-light">
+  <section class="section-navy">
     <div class="container contact-block">
-      <p>Questions, ideas, or want to talk about something you're building?</p>
-      <a href="mailto:rufus@accordant.eu" class="contact-link">rufus@accordant.eu</a>
+      <h2 class="contact-heading">Get in touch</h2>
+      <p class="contact-lead">
+        Questions, ideas, or building something similar?
+      </p>
+      <a href="mailto:rufus@accordant.eu" class="contact-cta">
+        rufus@accordant.eu →
+      </a>
+      <div class="contact-social">
+        <a href="https://x.com/johan_hellman" target="_blank">X @johan_hellman</a>
+        <span class="contact-sep">·</span>
+        <a href="https://linkedin.com/in/jhellman" target="_blank">LinkedIn</a>
+        <span class="contact-sep">·</span>
+        <a href="https://github.com/accordant-eu" target="_blank">GitHub</a>
+      </div>
     </div>
   </section>
 
+  <!-- ─── Footer ───────────────────────────────────────────────────────── -->
   <footer>
     <div class="container footer-inner">
       <span class="wordmark-sm">Accordant</span>
-      <span class="footer-copy">
-        Johan Hellman · Madrid ·
-        <a href="https://github.com/accordant-eu" target="_blank">GitHub</a> ·
-        <a href="https://x.com/johan_hellman" target="_blank">X</a> ·
-        <a href="https://linkedin.com/in/jhellman" target="_blank">LinkedIn</a>
-      </span>
+      <span class="footer-copy">© 2026 Johan Hellman · Madrid</span>
     </div>
   </footer>
 
