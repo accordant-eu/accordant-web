@@ -91,6 +91,16 @@ nav {
   margin-bottom: 1.75rem;
   max-width: 600px;
 }
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.section-light .eyebrow { color: var(--muted); }
+
 .byline {
   font-size: 0.88rem;
   color: var(--accent);
