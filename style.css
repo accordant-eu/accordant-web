@@ -42,6 +42,16 @@ code {
   padding: 0 2rem;
 }
 
+/* ── Vertical rhythm ─────────────────────────────────────────────────────── */
+/* Space above headings and eyebrows when preceded by content */
+.eyebrow + h2   { margin-top: 0; }          /* eyebrow sits tight above its h2 */
+* + .eyebrow    { margin-top: 2.5rem; }     /* gap before an eyebrow+h2 block */
+* + h2          { margin-top: 2.5rem; }     /* gap before a bare h2 */
+* + h3          { margin-top: 1.5rem; }     /* gap before h3 within cards */
+p + p           { margin-top: 0.85rem; }    /* paragraph spacing */
+h2 + p,
+h3 + p          { margin-top: 0.6rem; }     /* tighten text immediately after heading */
+
 /* ── Nav ────────────────────────────────────────────────────────────────── */
 nav {
   background: var(--navy);
