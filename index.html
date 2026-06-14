@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Accordant — AI projects by Johan Hellman</title>
-  <meta name="description" content="Personal projects exploring practical uses of AI in finance, tax, investment, and adjacent areas." />
+  <meta name="description" content="Personal projects exploring practical uses of AI in finance, tax, investment, and adjacent areas. AI as builder and as product." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet" />
@@ -22,11 +22,12 @@
   <!-- ─── Hero ─────────────────────────────────────────────────────────── -->
   <section class="hero">
     <div class="container">
-      <h1>Exploring what AI can actually do.</h1>
+      <h1>AI as the team.<br>AI as the product.</h1>
       <p class="lead">
-        Accordant is where I build things. The focus is on areas where AI can
-        genuinely reduce complexity: personal finance, tax, investment, and
-        adjacent problems that are harder than they should be.
+        Accordant is a personal workshop exploring what happens when AI is
+        taken seriously — not as a coding assistant bolted onto an existing
+        workflow, but as the primary builder, operator, and analytical
+        engine for real problems in finance and tax.
       </p>
       <p class="byline">— Johan Hellman, Stockholm / Madrid</p>
     </div>
@@ -38,22 +39,26 @@
       <h2 class="section-label">Projects</h2>
       <div class="project-list">
 
+        <!-- Rán -->
         <div class="project-card">
           <div class="project-meta">
             <span class="project-tag">Tax · Spain</span>
-            <span class="status-live" title="Live">Live</span>
+            <span class="status-live">Live</span>
           </div>
           <h3>Rán — IRPF explainer</h3>
           <p>
             Spain's annual tax return (Modelo 100) is four pages of AEAT
-            jargon that most filers sign without understanding. Rán takes the
-            draft PDF and explains it in plain language: what every figure
-            means, how the calculation works, what's worth a second look.
-            Designed for expat professionals and international families.
+            jargon that most filers sign without understanding. Rán takes
+            the draft PDF and explains it in plain language: what every
+            figure means, how the calculation works, what's worth a second
+            look. Designed for expat professionals and international
+            families navigating cross-border complexity.
           </p>
           <p class="project-detail">
-            Zero data retention. PDF processed in memory, never written to
-            disk. Backend open source.
+            Claude (Sonnet 4.6) is the analytical engine. Zero data
+            retention — PDFs are processed in memory, never written to
+            disk. Backend is open source and intentionally short enough
+            to audit in five minutes.
           </p>
           <div class="project-links">
             <a href="https://ran.accordant.eu" class="project-link primary">ran.accordant.eu ↗</a>
@@ -61,43 +66,47 @@
           </div>
         </div>
 
+        <!-- Rebalancing engine -->
         <div class="project-card">
           <div class="project-meta">
             <span class="project-tag">Investment · Portfolio</span>
-            <span class="status-live" title="Live">Live</span>
+            <span class="status-live">Live</span>
           </div>
-          <h3>Rebalancing engine</h3>
+          <h3>Portfolio rebalancing engine</h3>
           <p>
-            A deterministic portfolio rebalancing engine with a fully
-            autonomous live agent. Streams portfolio drift evaluation in
-            real time, proposes trades, and executes via Alpaca with
-            circuit breaker safety limits and immutable JSONL audit trails.
-            Originally built as a pure offline calculation core; now wraps
-            an AI orchestrator capable of continuous autonomous evaluation.
+            A deterministic portfolio rebalancing engine that started as
+            an offline calculation core and evolved — through AI-driven
+            development — into a fully autonomous live agent. The engine
+            streams portfolio drift in real time, proposes trades, and
+            executes via Alpaca with circuit breaker safety limits and
+            immutable JSONL audit trails.
           </p>
           <p class="project-detail">
-            TypeScript / Node.js. Paper and live trading via Alpaca.
+            Built entirely through AI-assisted development: architecture
+            decisions, implementation, tests, and documentation all
+            produced through structured LLM collaboration following a
+            custom <code>AGENTS.md</code> ruleset and 38+ ADRs. The live
+            agent is fed signals from the broader OpenClaw intelligence
+            harness.
           </p>
           <div class="project-links">
             <a href="https://github.com/johanhellman/rebalancing-engine" class="project-link secondary">GitHub ↗</a>
           </div>
         </div>
 
+        <!-- Alpaca CLI -->
         <div class="project-card">
           <div class="project-meta">
             <span class="project-tag">Investment · CLI</span>
-            <span class="status-maint" title="Maintenance">Maintenance</span>
+            <span class="status-maint">Maintenance</span>
           </div>
           <h3>Alpaca CLI</h3>
           <p>
-            A suite of command-line tools for the Alpaca API ecosystem:
+            A suite of Go command-line tools for the Alpaca API ecosystem:
             broker operations (accounts, funding, sub-account trading) and
-            retail/paper trading (account info, positions, orders). Built to
-            support the rebalancing engine and day-to-day portfolio
-            management workflows.
-          </p>
-          <p class="project-detail">
-            Go. Installable via Homebrew.
+            retail/paper trading (account info, positions, orders). Built
+            to support the rebalancing engine and day-to-day portfolio
+            management. Installable via Homebrew.
           </p>
           <div class="project-links">
             <a href="https://github.com/johanhellman/alpaca-broker-cli" class="project-link secondary">GitHub ↗</a>
@@ -111,80 +120,100 @@
   <!-- ─── Infrastructure ───────────────────────────────────────────────── -->
   <section class="section-light">
     <div class="container">
-      <h2 class="section-label">Infrastructure</h2>
+      <h2 class="section-label">The harness</h2>
       <p class="section-intro">
-        The projects above run on a shared AI-native infrastructure, built
-        around <a href="https://openclaw.ai" target="_blank">OpenClaw</a> and
-        a team of specialised agents. Each agent has a name, a defined scope,
-        and a trust level.
+        The projects above share an AI-native infrastructure built around
+        <a href="https://openclaw.ai" target="_blank">OpenClaw</a>. Rather
+        than a single general-purpose assistant, the setup uses a team of
+        specialised agents — each with a defined scope, trust level, and
+        operating model. Agents handle work autonomously within their brief;
+        anything consequential requires explicit approval.
       </p>
+
       <div class="agent-grid">
-
         <div class="agent-card">
-          <span class="agent-name">Rufus</span>
-          <span class="agent-role">Orchestrator</span>
+          <div class="agent-header">
+            <span class="agent-name">Rufus</span>
+            <span class="agent-role">Orchestrator</span>
+          </div>
           <p>Executive assistant and main coordinator. Manages tasks,
-          routes work to specialists, and maintains continuity across
-          sessions.</p>
+          routes work to specialist agents, maintains continuity across
+          sessions, and acts as the primary interface for day-to-day work.</p>
         </div>
 
         <div class="agent-card">
-          <span class="agent-name">Heimdal</span>
-          <span class="agent-role">Market intelligence</span>
+          <div class="agent-header">
+            <span class="agent-name">Heimdal</span>
+            <span class="agent-role">Market intelligence</span>
+          </div>
           <p>Runs daily ingestion of investment signals from curated
-          financial X/Twitter accounts. Scores, deduplicates, and
-          routes relevant signals for review.</p>
+          financial accounts on X. Scores relevance, deduplicates, and
+          routes signals downstream for synthesis and portfolio review.</p>
         </div>
 
         <div class="agent-card">
-          <span class="agent-name">Munin</span>
-          <span class="agent-role">Research router</span>
-          <p>Processes bookmarks and research inputs. Classifies, routes,
-          and when appropriate, drafts architectural decision records
-          from external content.</p>
+          <div class="agent-header">
+            <span class="agent-name">Munin</span>
+            <span class="agent-role">Research router</span>
+          </div>
+          <p>Processes bookmarks and research inputs. Classifies content,
+          routes it by topic, and drafts architectural decision records
+          when external content warrants a documented response.</p>
         </div>
 
         <div class="agent-card">
-          <span class="agent-name">Týr</span>
-          <span class="agent-role">Portfolio analyst</span>
+          <div class="agent-header">
+            <span class="agent-name">Týr</span>
+            <span class="agent-role">Portfolio analyst</span>
+          </div>
           <p>Portfolio analysis, signal synthesis, and thesis validation.
-          Reads and analyses autonomously; requires explicit approval
-          before any execution.</p>
+          Consumes Heimdal's signals and feeds the rebalancing engine.
+          Reads and analyses autonomously — execution requires approval.</p>
         </div>
 
         <div class="agent-card">
-          <span class="agent-name">Vidar</span>
-          <span class="agent-role">Technical reviewer</span>
-          <p>Reviews plans, specs, and MVP documents for technical
-          soundness, privacy claims, and GTM alignment. Read-only:
-          writes review files, no execution or external actions.</p>
+          <div class="agent-header">
+            <span class="agent-name">Vidar</span>
+            <span class="agent-role">Technical reviewer</span>
+          </div>
+          <p>Reviews plans, specs, and product documents for technical
+          soundness, privacy claims, and strategic alignment. Read-only:
+          produces review files, no external actions.</p>
         </div>
-
       </div>
+
       <p class="agent-note">
-        Agent names follow Norse mythology. Names set intention —
-        chosen to point toward what each agent should become,
-        not just what it does today.
+        Names follow Norse mythology — chosen to set intention, not just
+        label a function. The naming philosophy: pick a name that points
+        toward what an agent should <em>become</em>, not just what it does today.
       </p>
     </div>
   </section>
 
-  <!-- ─── About ─────────────────────────────────────────────────────────── -->
+  <!-- ─── Approach ─────────────────────────────────────────────────────── -->
   <section class="section-white">
     <div class="container about-block">
-      <h2>About</h2>
+      <h2>The approach</h2>
       <p>
-        I'm a Swedish technologist based in Madrid. I've spent most of my
-        career building software and teams. Accordant is the space where I
-        explore what becomes possible when AI is applied seriously to problems
-        that have real complexity and real stakes — not conversational demos.
+        Each project here treats AI as a first-class collaborator, not a
+        productivity tool. The rebalancing engine's entire architecture —
+        decisions, tests, documentation, implementation — was produced
+        through structured LLM collaboration. Rán uses Claude as its
+        analytical engine. The OpenClaw harness runs agents that monitor
+        markets, route research, and review code autonomously.
       </p>
       <p>
-        Finance, investment, and tax are a natural starting point: the
-        information exists, the rules are largely codified, the stakes are
-        concrete, and most people are underserved by the tools available to
-        them. Each project here is built to be useful first — to me, and
-        then to others who face the same problem.
+        The consistent pattern across projects: deterministic, auditable
+        logic at the core, with AI handling the reasoning layer above it.
+        Not AI generating code that humans maintain — AI as an ongoing
+        operator of systems that remain legible and verifiable.
+      </p>
+      <p>
+        Finance and tax are a natural starting point. The rules are largely
+        codified. The stakes are real. The gap between what professionals
+        have access to and what individuals have access to is large. And
+        the problems are concrete enough that you know immediately whether
+        the output is any good.
       </p>
     </div>
   </section>
@@ -192,7 +221,7 @@
   <!-- ─── Contact ──────────────────────────────────────────────────────── -->
   <section class="section-light">
     <div class="container contact-block">
-      <p>Questions, ideas, or just want to talk about something you're building?</p>
+      <p>Questions, ideas, or want to talk about something you're building?</p>
       <a href="mailto:rufus@accordant.eu" class="contact-link">rufus@accordant.eu</a>
     </div>
   </section>
