@@ -30,9 +30,9 @@
       <p class="eyebrow-light">Johan Hellman · Stockholm / Madrid</p>
       <h1>AI as the team.<br>AI as the product.</h1>
       <p class="lead">
-        Accordant is a personal workshop exploring what happens when AI is
-        taken seriously — not as a coding assistant bolted onto an existing
-        workflow, but as the primary builder, operator, and analytical engine
+        Accordant is a personal workshop. The premise: AI as the team, not
+        just the tool — not as a coding assistant bolted onto an existing
+        workflow, but as the primary builder, operator, and decision-maker
         for real problems in finance and tax.
       </p>
       <a href="https://ran.accordant.eu" class="hero-cta">
@@ -199,11 +199,10 @@
       <p class="eyebrow">Case study</p>
       <h2>Two AI systems, one codebase</h2>
       <p class="section-intro">
-        The rebalancing engine is the clearest example of what multi-agent
-        coordination looks like at small scale. Google's AntiGravity develops the
-        software. Rufus operates it in production. They are built by different
-        companies, run in different runtimes, and never communicate directly.
-        Their shared interface is GitHub.
+        The rebalancing engine is where the agent coordination is most concrete.
+        Google's AntiGravity develops the software. Rufus operates it in production.
+        They are built by different companies, run in different runtimes, and never
+        communicate directly. Their shared interface is GitHub.
       </p>
 
       <!-- Ownership split -->
@@ -233,10 +232,10 @@
       <h3 class="subsection-heading">GitHub as the coordination layer</h3>
       <p>
         The two systems coordinate entirely through standard GitHub primitives —
-        no shared API, no message queue, no real-time channel. This turns out to
-        be a natural interoperability standard: both systems know how to read and
-        write Issues and PRs, and the label system provides just enough structure
-        to make messages typed without requiring a custom protocol.
+        no shared API, no message queue, no real-time channel. GitHub is a natural
+        interoperability standard for this: both systems know how to read and write
+        Issues and PRs, and the label system provides just enough structure to make
+        messages typed without requiring anything custom.
       </p>
 
       <div class="protocol-grid">
@@ -373,17 +372,17 @@
       <p class="eyebrow">Philosophy</p>
       <h2>The approach</h2>
       <p>
-        The interesting question isn't whether AI can write good code. It's whether
-        AI systems can coordinate well enough to run something end to end — and what
-        that coordination looks like at minimal scale, without purpose-built tooling.
+        Whether AI systems can coordinate well enough to run something end to end —
+        and what that looks like at small scale, without purpose-built tooling —
+        is the actual question.
       </p>
       <p>
-        The rebalancing engine answers this with a finding that's easy to miss: the
-        coordination layer doesn't need to be AI-specific. GitHub Issues and PRs turn
-        out to be a natural async protocol between agents from entirely different
-        stacks. A label is a message type. An Issue is a structured async message.
-        A PR is a change proposal with full provenance. Both systems already know
-        how to use these primitives — nothing custom needed.
+        The rebalancing engine is one answer. The coordination layer doesn't need
+        to be AI-specific: GitHub Issues and PRs work as a natural async protocol
+        between agents from entirely different stacks. A label is a message type.
+        An Issue is a structured async message. A PR is a change proposal with full
+        provenance. Both systems already know how to use these primitives — nothing
+        custom needed.
       </p>
       <p>
         The consistent pattern across all projects: deterministic, auditable logic
