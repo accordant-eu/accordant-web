@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accordant — AI projects by Johan Hellman</title>
-  <meta name="description" content="Personal projects exploring practical uses of AI in finance, tax, and investment. AI as builder and as product." />
+  <title>Accordant — AI-operated projects by Johan Hellman</title>
+  <meta name="description" content="Personal projects built and operated by AI agents — a small-scale experiment in replacing headcount with specialised agent teams." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet" />
@@ -86,10 +86,10 @@
             safety limits and immutable JSONL audit trails.
           </p>
           <div class="project-tech">
-            TypeScript · Built entirely by LLM collaboration · 38+ ADRs · Custom <code>AGENTS.md</code> ruleset
+            TypeScript · Developed by Google AntiGravity · Operated by Rufus · 38+ ADRs
           </div>
           <div class="project-links">
-            <a href="https://github.com/johanhellman/rebalancing-engine" class="project-link-subtle">GitHub ↗</a>
+            <a href="https://github.com/accordant-eu/rebalancing-engine" class="project-link-subtle">GitHub ↗</a>
           </div>
         </div>
 
@@ -105,7 +105,7 @@
             Installable via Homebrew.
           </p>
           <div class="project-links">
-            <a href="https://github.com/johanhellman/alpaca-broker-cli" class="project-link-subtle">GitHub ↗</a>
+            <a href="https://github.com/accordant-eu/alpaca-broker-cli" class="project-link-subtle">GitHub ↗</a>
           </div>
         </div>
 
@@ -119,13 +119,38 @@
       <p class="eyebrow">OpenClaw · Agent team</p>
       <h2>The harness</h2>
       <p class="section-intro">
-        All projects share an AI-native infrastructure built around
-        <a href="https://openclaw.ai" target="_blank">OpenClaw</a>.
-        Rather than one general-purpose assistant, the setup runs a team of
-        specialised agents — each with a defined scope, trust level, and
-        operating model. Agents work autonomously within their brief;
-        anything consequential requires explicit approval.
+        The projects run on a team of specialised AI agents, not a single
+        general-purpose assistant. Each agent has a defined scope, operating
+        model, and trust level. They hand off to each other directly — including
+        to external AI tools — without a human in the relay.
       </p>
+
+      <!-- Agent interaction flow -->
+      <div class="flow-block">
+        <p class="flow-label">How a feature goes from idea to production</p>
+        <div class="flow-steps">
+          <div class="flow-step">
+            <span class="flow-agent external">AntiGravity</span>
+            <span class="flow-desc">builds the feature, pushes to GitHub, signals readiness via Issue</span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <span class="flow-agent">Rufus</span>
+            <span class="flow-desc">reviews the change, pulls to staging, verifies, promotes to production</span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <span class="flow-agent">Rufus</span>
+            <span class="flow-desc">monitors production health; opens a GitHub Issue if anything breaks — AntiGravity reads it directly</span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <span class="flow-agent">Týr</span>
+            <span class="flow-desc">consumes the running system's data for investment analysis</span>
+          </div>
+        </div>
+        <p class="flow-note">No human relay at any step. Agents communicate via GitHub Issues, structured events, and APIs.</p>
+      </div>
 
       <div class="agent-grid">
         <div class="agent-card">
@@ -134,7 +159,8 @@
             <span class="agent-role">Orchestrator</span>
           </div>
           <p>Executive assistant and main coordinator. Manages tasks, routes
-          work to specialists, and maintains continuity across sessions.</p>
+          work to specialists, owns production infrastructure, and maintains
+          continuity across sessions.</p>
         </div>
 
         <div class="agent-card">
@@ -161,7 +187,7 @@
             <span class="agent-role">Portfolio analyst</span>
           </div>
           <p>Portfolio analysis, signal synthesis, and thesis validation.
-          Consumes Heimdal's signals, feeds the rebalancing engine.
+          Consumes Heimdal's signals and the rebalancing engine's output.
           Execution requires explicit approval.</p>
         </div>
 
@@ -173,11 +199,22 @@
           <p>Reviews plans, specs, and product documents for technical
           soundness and strategic alignment. Read-only — no external actions.</p>
         </div>
+
+        <div class="agent-card agent-card-external">
+          <div class="agent-header">
+            <span class="agent-name">AntiGravity</span>
+            <span class="agent-role">External · Development</span>
+          </div>
+          <p>Google's AI development tool. Builds and evolves the rebalancing
+          engine on the <code>main</code> branch. Signals production readiness
+          via GitHub; Rufus handles the rest.</p>
+        </div>
       </div>
 
       <p class="agent-note">
-        Names follow Norse mythology — chosen to point toward what each agent
-        should <em>become</em>, not just what it does today.
+        Internal agents are named after Norse mythology — chosen to point toward
+        what each agent should <em>become</em>, not just what it does today.
+        External agents are integrated through structured interfaces, not direct access.
       </p>
     </div>
   </section>
@@ -188,24 +225,24 @@
       <p class="eyebrow">Philosophy</p>
       <h2>The approach</h2>
       <p>
-        Each project treats AI as a first-class collaborator, not a
-        productivity tool. The rebalancing engine's architecture, tests,
-        and documentation were all produced through structured LLM
-        collaboration. Rán uses Claude as its analytical engine. The
-        OpenClaw harness runs agents that monitor markets, route research,
-        and review code autonomously.
+        Each project treats AI as a first-class operator, not a productivity tool.
+        The rebalancing engine is developed by one AI tool (AntiGravity) and
+        operated by another (Rufus). They communicate via GitHub Issues — no human
+        relay required. When something breaks in production, Rufus files an issue;
+        AntiGravity reads it. When a release is ready, AntiGravity files an issue;
+        Rufus deploys it.
       </p>
       <p>
-        The consistent pattern: deterministic, auditable logic at the core,
-        with AI as the reasoning layer above it. Not AI generating code that
-        humans maintain — AI as an ongoing operator of systems that remain
-        legible and verifiable.
+        The consistent pattern: deterministic, auditable logic at the core, with AI
+        as the reasoning and operating layer above it. Not AI generating code that
+        humans maintain — AI as an ongoing operator of systems that remain legible
+        and verifiable.
       </p>
       <p>
-        Finance and tax are the starting point because the rules are codified,
-        the stakes are concrete, and the gap between what professionals have
-        access to and what individuals have access to is large. You know
-        immediately whether the output is any good.
+        Finance and tax are the starting point because the rules are codified, the
+        stakes are concrete, and the gap between what professionals have access to
+        and what individuals have access to is large. You know immediately whether
+        the output is any good.
       </p>
     </div>
   </section>
