@@ -121,46 +121,20 @@
       <p class="section-intro">
         The projects run on a team of specialised AI agents, not a single
         general-purpose assistant. Each agent has a defined scope, operating
-        model, and trust level. They hand off to each other directly — including
-        to external AI tools — without a human in the relay.
+        model, and trust level. Most of the coordination happens between agents
+        directly — including to external AI systems — without a human in the relay.
       </p>
 
-      <!-- Agent interaction flow -->
-      <div class="flow-block">
-        <p class="flow-label">How a feature goes from idea to production</p>
-        <div class="flow-steps">
-          <div class="flow-step">
-            <span class="flow-agent external">AntiGravity</span>
-            <span class="flow-desc">builds the feature, pushes to GitHub, signals readiness via Issue</span>
-          </div>
-          <div class="flow-arrow">↓</div>
-          <div class="flow-step">
-            <span class="flow-agent">Rufus</span>
-            <span class="flow-desc">reviews the change, pulls to staging, verifies, promotes to production</span>
-          </div>
-          <div class="flow-arrow">↓</div>
-          <div class="flow-step">
-            <span class="flow-agent">Rufus</span>
-            <span class="flow-desc">monitors production health; opens a GitHub Issue if anything breaks — AntiGravity reads it directly</span>
-          </div>
-          <div class="flow-arrow">↓</div>
-          <div class="flow-step">
-            <span class="flow-agent">Týr</span>
-            <span class="flow-desc">consumes the running system's data for investment analysis</span>
-          </div>
-        </div>
-        <p class="flow-note">No human relay at any step. Agents communicate via GitHub Issues, structured events, and APIs.</p>
-      </div>
-
+      <!-- Agent grid -->
       <div class="agent-grid">
         <div class="agent-card">
           <div class="agent-header">
             <span class="agent-name">Rufus</span>
-            <span class="agent-role">Orchestrator</span>
+            <span class="agent-role">Orchestrator · DevOps</span>
           </div>
-          <p>Executive assistant and main coordinator. Manages tasks, routes
-          work to specialists, owns production infrastructure, and maintains
-          continuity across sessions.</p>
+          <p>Executive assistant and main coordinator. Routes work to specialists,
+          owns all production infrastructure, manages deployments, and maintains
+          continuity across sessions via a persistent memory system.</p>
         </div>
 
         <div class="agent-card">
@@ -187,7 +161,7 @@
             <span class="agent-role">Portfolio analyst</span>
           </div>
           <p>Portfolio analysis, signal synthesis, and thesis validation.
-          Consumes Heimdal's signals and the rebalancing engine's output.
+          Consumes Heimdal's signals and the rebalancing engine's live output.
           Execution requires explicit approval.</p>
         </div>
 
@@ -205,44 +179,219 @@
             <span class="agent-name">AntiGravity</span>
             <span class="agent-role">External · Development</span>
           </div>
-          <p>Google's AI development tool. Builds and evolves the rebalancing
-          engine on the <code>main</code> branch. Signals production readiness
-          via GitHub; Rufus handles the rest.</p>
+          <p>Google's AI development tool. Owns the <code>main</code> branch of
+          the rebalancing engine — feature development, architecture, tests.
+          Coordinates with Rufus entirely through GitHub primitives.</p>
         </div>
       </div>
 
       <p class="agent-note">
-        Internal agents are named after Norse mythology — chosen to point toward
-        what each agent should <em>become</em>, not just what it does today.
-        External agents are integrated through structured interfaces, not direct access.
+        Internal agents follow Norse mythology — names chosen to point toward what
+        each agent should <em>become</em>, not just what it does today. External
+        agents integrate through structured interfaces, not shared infrastructure.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── Case study ───────────────────────────────────────────────────── -->
+  <section class="section-white">
+    <div class="container">
+      <p class="eyebrow">Case study</p>
+      <h2>Two AI systems, one codebase</h2>
+      <p class="section-intro">
+        The rebalancing engine is the clearest example of what multi-agent
+        coordination looks like at small scale. Google's AntiGravity develops the
+        software. Rufus operates it in production. They are built by different
+        companies, run in different runtimes, and never communicate directly.
+        Their shared interface is GitHub.
+      </p>
+
+      <!-- Ownership split -->
+      <div class="ownership-block">
+        <div class="ownership-col">
+          <div class="ownership-label external">AntiGravity</div>
+          <ul class="ownership-list">
+            <li>Feature development</li>
+            <li><code>main</code> branch</li>
+            <li>Architecture decisions</li>
+            <li>Tests and ADRs</li>
+          </ul>
+        </div>
+        <div class="ownership-divider">↔</div>
+        <div class="ownership-col">
+          <div class="ownership-label">Rufus</div>
+          <ul class="ownership-list">
+            <li>Staging (<code>ops</code> branch)</li>
+            <li>Production deployment</li>
+            <li>Infrastructure and nginx</li>
+            <li>Monitoring and incident response</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Communication protocol -->
+      <h3 class="subsection-heading">GitHub as the coordination layer</h3>
+      <p>
+        The two systems coordinate entirely through standard GitHub primitives —
+        no shared API, no message queue, no real-time channel. This turns out to
+        be a natural interoperability standard: both systems know how to read and
+        write Issues and PRs, and the label system provides just enough structure
+        to make messages typed without requiring a custom protocol.
+      </p>
+
+      <div class="protocol-grid">
+        <div class="protocol-card">
+          <div class="protocol-sender">
+            <span class="protocol-agent external">AntiGravity</span>
+            <span class="protocol-arrow">→</span>
+            <span class="protocol-agent">Rufus</span>
+          </div>
+          <div class="protocol-artifact">
+            Issue · label: <code class="label-tag release">release-ready</code>
+          </div>
+          <p class="protocol-desc">
+            "This version of <code>main</code> is production-ready. Here's what
+            changed and what new config it needs." Rufus picks this up, verifies
+            on the <code>ops</code> environment, and deploys to production at own
+            discretion.
+          </p>
+        </div>
+
+        <div class="protocol-card">
+          <div class="protocol-sender">
+            <span class="protocol-agent">Rufus</span>
+            <span class="protocol-arrow">→</span>
+            <span class="protocol-agent external">AntiGravity</span>
+          </div>
+          <div class="protocol-artifact">
+            Issue · label: <code class="label-tag feedback">deployment-feedback</code>
+          </div>
+          <p class="protocol-desc">
+            "The deployed ref is broken — here's the symptom, the logs, and the
+            context." AntiGravity reads it on the next run and fixes accordingly.
+            No human needs to be in the loop.
+          </p>
+        </div>
+
+        <div class="protocol-card">
+          <div class="protocol-sender">
+            <span class="protocol-agent external">AntiGravity</span>
+            <span class="protocol-arrow">→</span>
+            <span class="protocol-agent">Rufus</span>
+          </div>
+          <div class="protocol-artifact">
+            Pull request · <code>feature → main</code>
+          </div>
+          <p class="protocol-desc">
+            Standard development PRs with structured descriptions. Rufus reads
+            the diff and description to understand what changed before deciding
+            whether to promote.
+          </p>
+        </div>
+
+        <div class="protocol-card">
+          <div class="protocol-sender">
+            <span class="protocol-agent">Rufus</span>
+            <span class="protocol-arrow">→</span>
+            <span class="protocol-agent external">AntiGravity</span>
+          </div>
+          <div class="protocol-artifact">
+            Pull request · <code>ops → main</code>
+          </div>
+          <p class="protocol-desc">
+            When Rufus makes an infrastructure or operational change on the
+            <code>ops</code> branch that's worth folding into the codebase
+            proper, a PR goes up for AntiGravity to review.
+          </p>
+        </div>
+      </div>
+
+      <!-- Deploy flow -->
+      <h3 class="subsection-heading">The deployment cycle</h3>
+      <div class="flow-block">
+        <div class="flow-col">
+          <p class="flow-col-label">Happy path</p>
+          <div class="flow-steps">
+            <div class="flow-step">
+              <span class="flow-agent external">AntiGravity</span>
+              <span class="flow-desc">pushes code to <code>main</code>; opens <code class="label-tag release">release-ready</code> Issue when ready</span>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <span class="flow-agent">Rufus</span>
+              <span class="flow-desc">pulls <code>main</code> to <code>ops</code> branch; runs on staging at <code>ops.rebalancing.accordant.eu</code></span>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <span class="flow-agent">Rufus</span>
+              <span class="flow-desc">triggers <code>workflow_dispatch</code> deploy to <code>rebalancing.accordant.eu</code></span>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <span class="flow-agent">Týr</span>
+              <span class="flow-desc">consumes live portfolio data from the running system for investment analysis</span>
+            </div>
+          </div>
+        </div>
+        <div class="flow-col">
+          <p class="flow-col-label">Failure path</p>
+          <div class="flow-steps">
+            <div class="flow-step">
+              <span class="flow-agent">Rufus</span>
+              <span class="flow-desc">detects health failure post-deploy</span>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <span class="flow-agent">Rufus</span>
+              <span class="flow-desc">opens <code class="label-tag feedback">deployment-feedback</code> Issue with ref, symptom, and logs</span>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <span class="flow-agent external">AntiGravity</span>
+              <span class="flow-desc">reads issue, investigates, pushes a fix to <code>main</code></span>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+              <span class="flow-agent external">AntiGravity</span>
+              <span class="flow-desc">opens new <code class="label-tag release">release-ready</code> Issue; cycle repeats</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="case-study-note">
+        The full audit trail lives in the GitHub Actions log and the repo's Issue
+        history. Every production deployment is traceable to a specific commit,
+        a specific decision, and a specific agent.
       </p>
     </div>
   </section>
 
   <!-- ─── Approach ─────────────────────────────────────────────────────── -->
-  <section class="section-white">
+  <section class="section-light">
     <div class="container about-block">
       <p class="eyebrow">Philosophy</p>
       <h2>The approach</h2>
       <p>
-        Each project treats AI as a first-class operator, not a productivity tool.
-        The rebalancing engine is developed by one AI tool (AntiGravity) and
-        operated by another (Rufus). They communicate via GitHub Issues — no human
-        relay required. When something breaks in production, Rufus files an issue;
-        AntiGravity reads it. When a release is ready, AntiGravity files an issue;
-        Rufus deploys it.
+        The interesting question isn't whether AI can write good code. It's whether
+        AI systems can coordinate well enough to run something end to end — and what
+        that coordination looks like at minimal scale, without purpose-built tooling.
       </p>
       <p>
-        The consistent pattern: deterministic, auditable logic at the core, with AI
-        as the reasoning and operating layer above it. Not AI generating code that
-        humans maintain — AI as an ongoing operator of systems that remain legible
-        and verifiable.
+        The rebalancing engine answers this with a finding that's easy to miss: the
+        coordination layer doesn't need to be AI-specific. GitHub Issues and PRs turn
+        out to be a natural async protocol between agents from entirely different
+        stacks. A label is a message type. An Issue is a structured async message.
+        A PR is a change proposal with full provenance. Both systems already know
+        how to use these primitives — nothing custom needed.
       </p>
       <p>
-        Finance and tax are the starting point because the rules are codified, the
-        stakes are concrete, and the gap between what professionals have access to
-        and what individuals have access to is large. You know immediately whether
-        the output is any good.
+        The consistent pattern across all projects: deterministic, auditable logic
+        at the core, with AI as the reasoning and operating layer above it. Not AI
+        generating code that humans maintain — AI as an ongoing operator of systems
+        that remain legible and verifiable. Finance and tax are the starting point
+        because the rules are codified, the stakes are concrete, and you know
+        immediately whether the output is any good.
       </p>
     </div>
   </section>
