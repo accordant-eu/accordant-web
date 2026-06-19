@@ -110,15 +110,16 @@
           </div>
           <h3>Portfolio rebalancing engine</h3>
           <p>
-            A deterministic portfolio rebalancing engine that started as an
-            offline calculation core and evolved — through AI-driven development
-            — into a fully autonomous live agent. Streams portfolio drift in real
-            time, proposes trades, and executes via Alpaca with circuit breaker
-            safety limits and immutable JSONL audit trails. Exposes a REST API
-            with a full OpenAPI spec, consumed by Týr for live portfolio analysis.
+            A multi-tenant B2B SaaS rebalancing engine. Monitors drift across
+            all client portfolios continuously, evaluates trade proposals against
+            a TCO-vs-benefit quality gate, and executes via Alpaca within hard
+            circuit breaker limits. Mandate archetypes (StaticWeights,
+            EfficientFrontier, MinimumVariance) govern per-portfolio strategy.
+            Týr reads portfolio state and proposes mandate changes; the engine
+            rebalances toward updated targets on the next tick.
           </p>
           <div class="project-tech">
-            TypeScript · Developed by Google AntiGravity · Operated by Rufus · REST API · 38+ ADRs
+            TypeScript · Developed by Google AntiGravity · Operated by Rufus · REST API · 51+ ADRs
           </div>
           <div class="project-links">
             <a href="https://app.rebalancing.accordant.eu/api/docs" class="btn-project">API docs →</a>
