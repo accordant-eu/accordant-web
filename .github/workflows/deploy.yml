@@ -31,6 +31,8 @@ jobs:
         run: |
           set -e
           TARGET=/srv/accordant-web
+          # Belt-and-suspenders for runner ownership (github-runner vs root)
+          git config --global --add safe.directory "$TARGET"
           cd "$TARGET"
           git pull --ff-only
           rm -rf "$TARGET/_site"
