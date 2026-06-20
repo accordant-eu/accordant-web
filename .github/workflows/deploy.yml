@@ -12,7 +12,17 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout
+      - name: Force clean clone
+        run: |
+          set -e
+          rm -rf "$GITHUB_WORKSPACE"
+          mkdir -p "$GITHUB_WORKSPACE"
+          git clone --depth 1 https://github.com/accordant-eu/accordant-web.git "$GITHUB_WORKSPACE"
+          cd "$GITHUB_WORKSPACE"
+          git checkout ${{ github.sha }}
+          echo "Checked out: $(git rev-parse --short HEAD)"
+
+      - name: Checkout (fallback)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
