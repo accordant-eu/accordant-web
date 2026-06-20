@@ -12,18 +12,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Force clean clone
-        run: |
-          set -e
-          echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
-          rm -rf "$GITHUB_WORKSPACE"
-          mkdir -p "$GITHUB_WORKSPACE"
-          git clone --depth 1 https://github.com/accordant-eu/accordant-web.git "$GITHUB_WORKSPACE"
-          cd "$GITHUB_WORKSPACE"
-          git checkout ${{ github.sha }}
-          echo "Checked out: $(git rev-parse --short HEAD)"
-          echo "First 5 lines of src/index.njk:"
-          head -5 src/index.njk
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          clean: true
 
       - name: Setup Node
         uses: actions/setup-node@v4
