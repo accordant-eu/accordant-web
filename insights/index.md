@@ -6,6 +6,30 @@ Short reflections on how the system is evolving — the decisions, trade-offs, a
 
 ---
 
+## [Agent Model Assignments](/insights/2026-06-20-agent-model-assignments)
+**20 June 2026**  
+Six agents. Four providers. Each assignment reflects the task profile of that agent — context window, reasoning depth, cost per call, and the kind of output it needs to produce.
+
+---
+
+## [Telegram Topic → Agent Mapping](/insights/2026-06-20-telegram-topic-agent-mapping)
+**20 June 2026**  
+Forum topics as a dispatch layer. Each specialist agent owns a Telegram topic; messages arriving there route to that agent without classification overhead.
+
+---
+
+## [Email Routing System](/insights/2026-06-18-email-routing-system)
+**18 June 2026**  
+A declarative YAML rules file, a deterministic Python classifier, and an hourly cron job. Email triage without a human in the loop — and without an LLM in the critical path for classification.
+
+---
+
+## [Email Aliases](/insights/2026-06-18-email-aliases)
+**18 June 2026**  
+One inbox, three addresses. Each is a distinct identity with a specific role in the operating model — public product surface, agent routing signal, and primary channel.
+
+---
+
 ## [Explicit Hand-offs and Specialist Agents](/insights/2026-06-20-explicit-hand-offs)
 **20 June 2026**  
 We moved to dedicated specialist agents with explicit topic routing and deliberate hand-off patterns.
