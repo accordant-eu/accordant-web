@@ -1,52 +1,28 @@
----
-title: "Explicit Hand-offs Between Agents"
-date: 2026-06-20
-author: Rufus
-tags: [agents, operating-model, governance]
----
+# Explicit Hand-offs and Specialist Agents
 
-## The Problem
+**20 June 2026**
 
-When multiple specialized agents work on a task, the output of one stage must become reliable input for the next. Without deliberate hand-off artifacts, context is lost, assumptions go unexamined, and the human supervisor is left piecing together what happened overnight.
+We moved to dedicated specialist agents with explicit topic routing and deliberate hand-off patterns. General sessions were starting to mix concerns, and the signal quality was degrading. The rebalancing-engine release made the problem concrete — we needed clean integration points for the new Týr API and SSE capabilities without adding hidden automation.
 
-## The Pattern
+## What changed
 
-The **elves_skill "morning report"** pattern (v1.10.1) introduced a structured five-field hand-off format:
+Specialist agents now own specific domains. One handles broad daily scanning, another does narrow investment reasoning, and others cover architecture reviews, classification, and infrastructure. Inbound routing is automatic. Outbound messages require an explicit `threadId`. We defined a guarded hand-off contract so broad scanners can surface relevant items to the reasoning layer without creating persistent connections.
 
-- **status** — what happened
-- **problems** — what broke or surprised the agent
-- **lessons** — what was learned
-- **validation proof** — concrete evidence the output is correct
-- **residual risks** — what was not fully verified
+## Why we made the change
 
-This is not just logging. It is a designed artifact for the human manager who was not present during the run.
+General-purpose sessions accumulate noise. As the number of concerns grew, it became harder to maintain focus and to audit how work actually moved through the system. The new real-time features in the engine needed a clear surface. Rather than paper over the problem with more automation, we made the boundaries explicit.
 
-## Governance Checkpoint
+## What we kept simple
 
-A key refinement from the June 2026 retrospectives: **human review should be an explicit, designed checkpoint between agent stages**, not an after-the-fact necessity.
+- No automatic topic creation for outbound agent messages.
+- No always-on listeners.
+- The split between broad scanning and narrow reasoning reduces the volume of low-value items reaching the thesis layer.
+- We accepted that outbound topic binding remains manual for now. Building fragile automation to hide it would have been the wrong move.
 
-The pipeline becomes:
+## Impact
 
-1. Informal spec
-2. Agent hardens into subdivided tasks
-3. **Human review** ← explicit gate
-4. Specifier agent converts to Gherkin
-5. Agent executes
+Work now moves through defined channels. Each agent stays in its lane, and conversations are easy to navigate by ownership. The rebalancing engine is positioned with clean API surfaces that match this model instead of requiring deep internal knowledge of the agent system.
 
-Each transition between stages is a potential failure point. Explicit hand-offs turn those transitions into verifiable artifacts.
+## Forward
 
-## Why This Matters
-
-- Agents make wrong assumptions on your behalf and run with them.
-- Models do not manage their confusion or seek clarification proactively.
-- Unstructured cron output (plain text logs, brief daily memory notes) leaves the supervisor without a digestible summary.
-
-The five-field structure forces the agent to surface problems, prove correctness, and declare uncertainty — all before the next stage begins.
-
-## Implementation Notes
-
-- The hand-off artifact should be HTML (readable at a glance) rather than raw logs.
-- It is produced at the end of each significant run, especially overnight/cron work.
-- The human supervisor consumes it on wake-up; no need to reconstruct context from scattered logs.
-
-This pattern is now part of the standing agent operating model for Rufus-orchestrated work.
+Future additions will follow the same pattern: clear ownership and explicit hand-offs. We will continue to favour understandable boundaries over convenience that hides complexity.
