@@ -14,14 +14,16 @@ module.exports = function(eleventyConfig) {
   });
 
   // Collection for insights (sorted newest first)
-  // Also ensure they get proper /insights/ URLs even without frontmatter
+  // Exclude README.md and any non-article files
   eleventyConfig.addCollection("insights", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/insights/*.md").sort((a, b) => {
-      return b.date - a.date;
-    });
+    return collectionApi.getFilteredByGlob("src/insights/*.md")
+      .filter(item => !item.inputPath.endsWith("/README.md"))
+      .sort((a, b) => {
+        return b.date - a.date;
+      });
   });
 
-  // Force clean permalinks + layout for all insight markdown files
+  // Force clean permalinks + article layout for insight markdown files
   eleventyConfig.addGlobalData("eleventyComputed", {
     permalink: (data) => {
       if (data.page.inputPath.includes("/src/insights/")) {
@@ -31,7 +33,7 @@ module.exports = function(eleventyConfig) {
     },
     layout: (data) => {
       if (data.page.inputPath.includes("/src/insights/")) {
-        return "base.njk";
+        return "article.njk";
       }
     }
   });

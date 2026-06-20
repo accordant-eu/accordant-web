@@ -1,3 +1,8 @@
+---
+date: 2026-05-02
+title: "Standing Decision Discipline in Repositories"
+---
+
 # Standing Decision Discipline in Repositories
 
 **2 May 2026**
