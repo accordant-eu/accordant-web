@@ -24,7 +24,24 @@ jobs:
       - name: Build site
         run: npx @11ty/eleventy
 
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: ./_site
+
       - name: Deploy to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          source: "./_site/*"
+          target: "/srv/accordant-web/_site"
+          strip_components: 1
+          rm: true
+
+      - name: Post-deploy
         uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.DEPLOY_HOST }}
@@ -34,8 +51,4 @@ jobs:
             set -e
             cd /srv/accordant-web
             git pull --ff-only
-            rm -rf /srv/accordant-web/_site
-            cp -r ${{ github.workspace }}/_site /srv/accordant-web/
-            # Optional: reload nginx if needed
-            # sudo nginx -s reload
             echo "Deployed: $(git rev-parse --short HEAD)"
