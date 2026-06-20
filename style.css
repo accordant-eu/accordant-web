@@ -364,6 +364,59 @@ footer { background: var(--navy-dark); padding: 1.25rem 0; }
   color: rgba(255,255,255,0.22);
 }
 
+/* ── Insights list ──────────────────────────────────────────────────────── */
+.insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.insight-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.1s;
+}
+.insight-item:hover {
+  background: #f8fafc;
+}
+
+.insight-date {
+  font-size: 0.85rem;
+  color: #64748b;
+  white-space: nowrap;
+  min-width: 7.5rem;
+}
+
+.insight-title {
+  font-size: 1rem;
+  color: #1e2937;
+  flex: 1;
+}
+
+/* Full insights page */
+.insights-full-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+.insight-item-full {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  padding: 0.75rem 0;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid #e5e7eb;
+}
+.insight-item-full:hover { background: #f8fafc; }
+
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .agent-grid { grid-template-columns: 1fr 1fr; }

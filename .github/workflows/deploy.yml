@@ -31,10 +31,7 @@ jobs:
         run: |
           set -e
           TARGET=/srv/accordant-web
-          # Belt-and-suspenders for runner ownership (github-runner vs root)
-          git config --global --add safe.directory "$TARGET"
-          cd "$TARGET"
-          git pull --ff-only
+          # Runner already has latest code; just sync _site
           rm -rf "$TARGET/_site"
           cp -r "$GITHUB_WORKSPACE/_site" "$TARGET/"
           echo "Deployed: $(git rev-parse --short HEAD)"
