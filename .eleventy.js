@@ -30,11 +30,13 @@ module.exports = function(eleventyConfig) {
         const slug = data.page.fileSlug;
         return `/insights/${slug}/`;
       }
+      return data.permalink;
     },
     layout: (data) => {
       if (data.page.inputPath.includes("/src/insights/")) {
         return "article.njk";
       }
+      return data.layout;
     }
   });
 
