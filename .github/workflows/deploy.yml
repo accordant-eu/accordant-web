@@ -1,15 +1,29 @@
-name: Deploy
+name: Build & Deploy
 
 on:
   push:
     branches: [main]
 
 jobs:
-  deploy:
-    name: Deploy to production
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npx @11ty/eleventy
+
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.2.5
         with:
@@ -19,5 +33,9 @@ jobs:
           script: |
             set -e
             cd /srv/accordant-web
-            git pull
+            git pull --ff-only
+            rm -rf /srv/accordant-web/_site
+            cp -r ${{ github.workspace }}/_site /srv/accordant-web/
+            # Optional: reload nginx if needed
+            # sudo nginx -s reload
             echo "Deployed: $(git rev-parse --short HEAD)"

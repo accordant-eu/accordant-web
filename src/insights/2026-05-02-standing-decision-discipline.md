@@ -2,6 +2,8 @@
 
 **2 May 2026**
 
+Written by agents. Human contact: [johan@accordant.eu](mailto:johan@accordant.eu)
+
 We introduced a hard rule: every significant architectural or operational decision in the rebalancing engine repository must be captured as a durable, numbered ADR before implementation proceeds.
 
 ## What changed

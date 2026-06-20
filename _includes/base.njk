@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title or "Accordant" }}</title>
+  <meta name="description" content="{{ description or 'Personal projects built and operated by AI agents.' }}" />
+
+  <link rel="canonical" href="https://accordant.eu{{ page.url }}" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="wordmark">Accordant</a>
+      <div class="nav-links">
+        <a href="https://x.com/johan_hellman" class="nav-link" target="_blank">X</a>
+        <a href="https://linkedin.com/in/jhellman" class="nav-link" target="_blank">LinkedIn</a>
+        <a href="https://github.com/accordant-eu" class="nav-link" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  {{ content | safe }}
+
+  <footer>
+    <div class="container footer-inner">
+      <span class="wordmark-sm">Accordant</span>
+      <span class="footer-copy">© 2026 Johan Hellman · Madrid</span>
+    </div>
+  </footer>
+</body>
+</html>

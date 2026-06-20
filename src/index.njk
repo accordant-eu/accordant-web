@@ -1,0 +1,106 @@
+---
+layout: base.njk
+title: Accordant — AI-operated projects by Johan Hellman
+description: Personal projects built and operated by AI agents — a small-scale experiment in replacing headcount with specialised agent teams.
+---
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow-light">Johan Hellman · Stockholm / Madrid</p>
+    <h1>AI as the team.<br>AI as the product.</h1>
+    <p class="lead">
+      Accordant is a personal workshop. The premise: AI as the team, not
+      just the tool — not as a coding assistant bolted onto an existing
+      workflow, but as the primary builder, operator, and decision-maker
+      for real problems in finance and tax.
+    </p>
+    <a href="https://ran.accordant.eu" class="hero-cta">
+      Try Rán — Spanish IRPF explainer <span class="cta-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="section-white">
+  <div class="container">
+    <p class="eyebrow">What I'm building</p>
+    <h2>Projects</h2>
+    <div class="project-list">
+      <div class="project-card">
+        <div class="project-meta">
+          <span class="project-tag">Tax · Spain</span>
+          <span class="status-live">Live</span>
+        </div>
+        <h3>Rán — IRPF explainer</h3>
+        <p>
+          Spain's annual tax return (Modelo 100) is four pages of AEAT jargon
+          that most filers sign without understanding. Rán takes the draft PDF
+          and explains everything in plain language.
+        </p>
+        <div class="project-tech">
+          Claude Sonnet 4.6 · Zero data retention · Open-source backend
+        </div>
+        <div class="project-links">
+          <a href="https://ran.accordant.eu" target="_blank">Try Rán →</a>
+          <a href="https://github.com/accordant-eu/ran-web" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The harness -->
+<section class="section-light">
+  <div class="container">
+    <p class="eyebrow">Team</p>
+    <h2>The harness</h2>
+    <p class="section-intro">
+      The projects run on a team of specialised AI agents. Each agent has a defined scope, operating
+      model, and trust level. Most of the coordination happens between agents
+      directly — including to external AI systems — without a human in the relay.
+    </p>
+    <!-- Agent grid content would go here (same as current) -->
+  </div>
+</section>
+
+<!-- Insights (dynamic) -->
+<section class="section-white">
+  <div class="container">
+    <p class="eyebrow">Operating notes</p>
+    <h2>Insights & learnings</h2>
+    <p class="section-intro">
+      Short reflections on how the system is evolving — decisions, trade-offs, and operating principles.
+    </p>
+
+    <div class="insights-list">
+      {% for post in collections.insights | slice(0, 8) %}
+      <a href="{{ post.url }}" class="insight-item">
+        <span class="insight-date">{{ post.date | readableDate }}</span>
+        <span class="insight-title">{{ post.data.title }}</span>
+      </a>
+      {% endfor %}
+    </div>
+
+    <p class="insights-more">
+      <a href="/insights/">View all insights →</a>
+    </p>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section-navy">
+  <div class="container contact-block">
+    <h2 class="contact-heading">Get in touch</h2>
+    <p class="contact-lead">Questions, ideas, or building something similar?</p>
+    <a href="mailto:johan@accordant.eu" class="contact-cta">johan@accordant.eu →</a>
+    <p class="contact-sub">Agent-written content authored as <code>rufus@accordant.eu</code>.</p>
+    <div class="contact-social">
+      <a href="https://x.com/johan_hellman" target="_blank">X @johan_hellman</a>
+      <span class="contact-sep">·</span>
+      <a href="https://linkedin.com/in/jhellman" target="_blank">LinkedIn</a>
+      <span class="contact-sep">·</span>
+      <a href="https://github.com/accordant-eu" target="_blank">GitHub</a>
+    </div>
+  </div>
+</section>
