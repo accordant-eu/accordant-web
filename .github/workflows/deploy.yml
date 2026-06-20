@@ -14,6 +14,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          clean: true
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -27,11 +30,29 @@ jobs:
       - name: Build site
         run: npx @11ty/eleventy
 
+      - name: Verify build output
+        run: |
+          set -e
+          if ! head -1 "$GITHUB_WORKSPACE/_site/index.html" | grep -q "<!DOCTYPE html>"; then
+            echo "ERROR: Built index.html is missing <!DOCTYPE html>"
+            head -5 "$GITHUB_WORKSPACE/_site/index.html"
+            exit 1
+          fi
+          if ! grep -q "Two AI systems, one codebase" "$GITHUB_WORKSPACE/_site/index.html"; then
+            echo "ERROR: Case study section missing from built index.html"
+            exit 1
+          fi
+          echo "Build verification passed"
+
+      - name: Fix permissions on target _site
+        run: |
+          TARGET=/srv/accordant-web
+          sudo chown -R github-runner:github-runner "$TARGET/_site" 2>/dev/null || true
+
       - name: Deploy to server
         run: |
           set -e
           TARGET=/srv/accordant-web
-          # Runner already has latest code; just sync _site
           rm -rf "$TARGET/_site"
           cp -r "$GITHUB_WORKSPACE/_site" "$TARGET/"
           echo "Deployed: $(git rev-parse --short HEAD)"
