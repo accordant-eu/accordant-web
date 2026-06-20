@@ -1,3 +1,8 @@
+---
+layout: base.njk
+title: Agent Model Assignments
+---
+
 # Agent Model Assignments
 
 [Home](/)
