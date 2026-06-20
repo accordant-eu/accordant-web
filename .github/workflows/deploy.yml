@@ -6,7 +6,10 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    # Self-hosted runner on the target VPS (srv1055555).
+    # This avoids external SSH timeouts and GitHub runner IP whitelisting issues.
+    # Runner must be registered with label 'self-hosted' (default) and have Node 24 + git available.
+    runs-on: self-hosted
 
     steps:
       - name: Checkout
@@ -24,31 +27,12 @@ jobs:
       - name: Build site
         run: npx @11ty/eleventy
 
-      - name: Upload site artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: site
-          path: ./_site
-
       - name: Deploy to server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          source: "./_site/*"
-          target: "/srv/accordant-web/_site"
-          strip_components: 1
-          rm: true
-
-      - name: Post-deploy
-        uses: appleboy/ssh-action@v1.2.5
-        with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          script: |
-            set -e
-            cd /srv/accordant-web
-            git pull --ff-only
-            echo "Deployed: $(git rev-parse --short HEAD)"
+        run: |
+          set -e
+          TARGET=/srv/accordant-web
+          cd "$TARGET"
+          git pull --ff-only
+          rm -rf "$TARGET/_site"
+          cp -r "$GITHUB_WORKSPACE/_site" "$TARGET/"
+          echo "Deployed: $(git rev-parse --short HEAD)"
