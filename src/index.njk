@@ -60,7 +60,6 @@ description: Personal projects built and operated by AI agents — a small-scale
       model, and trust level. Most of the coordination happens between agents
       directly — including to external AI systems — without a human in the relay.
     </p>
-    <!-- Agent grid content would go here (same as current) -->
   </div>
 </section>
 
@@ -77,7 +76,6 @@ description: Personal projects built and operated by AI agents — a small-scale
       Their shared interface is GitHub.
     </p>
 
-    <!-- Ownership split -->
     <div class="ownership-block">
       <div class="ownership-col">
         <div class="ownership-label external">AntiGravity</div>
@@ -100,14 +98,10 @@ description: Personal projects built and operated by AI agents — a small-scale
       </div>
     </div>
 
-    <!-- Communication protocol -->
     <h3 class="subsection-heading">GitHub as the coordination layer</h3>
     <p>
       The two systems coordinate entirely through standard GitHub primitives —
-      no shared API, no message queue, no real-time channel. This turns out to
-      be a natural interoperability standard: both systems know how to read and
-      write Issues and PRs, and the label system provides just enough structure
-      to make messages typed without requiring a custom protocol.
+      no shared API, no message queue, no real-time channel.
     </p>
 
     <div class="protocol-grid">
@@ -140,7 +134,6 @@ description: Personal projects built and operated by AI agents — a small-scale
         <p class="protocol-desc">
           "The deployed ref is broken — here's the symptom, the logs, and the
           context." AntiGravity reads it on the next run and fixes accordingly.
-          No human needs to be in the loop.
         </p>
       </div>
 
@@ -177,7 +170,6 @@ description: Personal projects built and operated by AI agents — a small-scale
       </div>
     </div>
 
-    <!-- Deploy flow -->
     <h3 class="subsection-heading">The deployment cycle</h3>
     <div class="flow-block">
       <div class="flow-col">
