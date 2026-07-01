@@ -20,14 +20,14 @@ The agent operating model is premised on AI carrying the operational load. If ag
 
 Across the accordant-eu repos, the responsibility distribution is:
 
-- **accordant-web** — sole developer/operator; merge all PRs.
-- **ran-web** — operator; merge all infrastructure and deployment PRs.
-- **rebalancing-engine** — merge infrastructure PRs (Dockerfile, compose, nginx, CI, DEPLOYMENT.md); application code PRs remain AntiGravity's domain.
-- **ops** — sole maintainer; merge all PRs.
+- **accordant-web** - sole developer/operator; merge all PRs.
+- **ran-web** - operator; merge all infrastructure and deployment PRs.
+- **rebalancing-engine** - merge infrastructure PRs (Dockerfile, compose, nginx, CI, DEPLOYMENT.md); application code PRs remain AntiGravity's domain.
+- **ops** - sole maintainer; merge all PRs.
 
 The weekly GitHub sweep runs Sundays at 09:00 Madrid. That is the cadence for reviewing open PRs. The rule is simple: merge or close promptly. No accumulation.
 
-For genuinely ambiguous cases — an application-logic change from AntiGravity that also touches infrastructure — the answer is to flag to Johan, not to sit on the PR. Sitting on it does not resolve the ambiguity; it just creates a backlog.
+For genuinely ambiguous cases - an application-logic change from AntiGravity that also touches infrastructure - the answer is to flag to Johan, not to sit on the PR. Sitting on it does not resolve the ambiguity; it just creates a backlog.
 
 ## Why not ask Johan first
 
@@ -39,9 +39,9 @@ The decision about whether to merge is made at the policy level: which repos, wh
 
 ## Implications for how the operating model scales
 
-This is a specific instance of a general principle that keeps surfacing across the operating model. Ownership has to be explicit and trusted to be real. An agent that has been given responsibility for a domain but consistently asks for confirmation before acting in that domain does not actually own the domain — the human does.
+This is a specific instance of a general principle that keeps surfacing across the operating model. Ownership has to be explicit and trusted to be real. An agent that has been given responsibility for a domain but consistently asks for confirmation before acting in that domain does not actually own the domain - the human does.
 
-Real ownership means making decisions, surfacing exceptions, and operating the scope with visible results. The weekly sweep and the merge-or-close-promptly rule are the accountability mechanism. If something is merged that shouldn't have been, that is visible and correctable. If PRs accumulate because no one is willing to make the call, that is also visible — and it means the ownership assignment wasn't real.
+Real ownership means making decisions, surfacing exceptions, and operating the scope with visible results. The weekly sweep and the merge-or-close-promptly rule are the accountability mechanism. If something is merged that shouldn't have been, that is visible and correctable. If PRs accumulate because no one is willing to make the call, that is also visible - and it means the ownership assignment wasn't real.
 
 The PR management clarification is a small operational detail. The principle it represents is not.
 

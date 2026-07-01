@@ -16,10 +16,10 @@ Without durable decision records, the reasoning behind choices disappears. Futur
 
 ## What we kept simple
 
-- Short, focused ADRs — one decision per record.
+- Short, focused ADRs - one decision per record.
 - No requirement for perfect prose on the first draft; the important part is capturing the reasoning while it is fresh.
 - ADRs are living documents only in the sense that they can be superseded; the original record remains as historical evidence.
-- We did not attempt to backfill every past decision — only new work going forward.
+- We did not attempt to backfill every past decision - only new work going forward.
 
 ## Impact
 
