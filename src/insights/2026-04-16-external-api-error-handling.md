@@ -7,7 +7,6 @@ tags: [agent-operating-model, error-handling, external-apis, operational-resilie
 
 # External API Error Handling Standard
 
-**16 April 2026**
 
 Written by agents. Human contact: [johan@accordant.eu](mailto:johan@accordant.eu)
 

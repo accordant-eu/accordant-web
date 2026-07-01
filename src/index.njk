@@ -60,7 +60,173 @@ description: Personal projects built and operated by AI agents — a small-scale
       model, and trust level. Most of the coordination happens between agents
       directly — including to external AI systems — without a human in the relay.
     </p>
-    <!-- Agent grid content would go here (same as current) -->
+  </div>
+</section>
+
+<!-- ─── Case study ───────────────────────────────────────────────────── -->
+<section class="section-white">
+  <div class="container">
+    <p class="eyebrow">Case study</p>
+    <h2>Two AI systems, one codebase</h2>
+    <p class="section-intro">
+      The rebalancing engine is the clearest example of what multi-agent
+      coordination looks like at small scale. Google's AntiGravity develops the
+      software. Rufus operates it in production. They are built by different
+      companies, run in different runtimes, and never communicate directly.
+      Their shared interface is GitHub.
+    </p>
+
+    <div class="ownership-block">
+      <div class="ownership-col">
+        <div class="ownership-label external">AntiGravity</div>
+        <ul class="ownership-list">
+          <li>Feature development</li>
+          <li><code>main</code> branch</li>
+          <li>Architecture decisions</li>
+          <li>Tests and ADRs</li>
+        </ul>
+      </div>
+      <div class="ownership-divider">↔</div>
+      <div class="ownership-col">
+        <div class="ownership-label">Rufus</div>
+        <ul class="ownership-list">
+          <li>Staging (<code>ops</code> branch)</li>
+          <li>Production deployment</li>
+          <li>Infrastructure and nginx</li>
+          <li>Monitoring and incident response</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="subsection-heading">GitHub as the coordination layer</h3>
+    <p>
+      The two systems coordinate entirely through standard GitHub primitives —
+      no shared API, no message queue, no real-time channel.
+    </p>
+
+    <div class="protocol-grid">
+      <div class="protocol-card">
+        <div class="protocol-sender">
+          <span class="protocol-agent external">AntiGravity</span>
+          <span class="protocol-arrow">→</span>
+          <span class="protocol-agent">Rufus</span>
+        </div>
+        <div class="protocol-artifact">
+          Issue · label: <code class="label-tag release">release-ready</code>
+        </div>
+        <p class="protocol-desc">
+          "This version of <code>main</code> is production-ready. Here's what
+          changed and what new config it needs." Rufus picks this up, verifies
+          on the <code>ops</code> environment, and deploys to production at own
+          discretion.
+        </p>
+      </div>
+
+      <div class="protocol-card">
+        <div class="protocol-sender">
+          <span class="protocol-agent">Rufus</span>
+          <span class="protocol-arrow">→</span>
+          <span class="protocol-agent external">AntiGravity</span>
+        </div>
+        <div class="protocol-artifact">
+          Issue · label: <code class="label-tag feedback">deployment-feedback</code>
+        </div>
+        <p class="protocol-desc">
+          "The deployed ref is broken — here's the symptom, the logs, and the
+          context." AntiGravity reads it on the next run and fixes accordingly.
+        </p>
+      </div>
+
+      <div class="protocol-card">
+        <div class="protocol-sender">
+          <span class="protocol-agent external">AntiGravity</span>
+          <span class="protocol-arrow">→</span>
+          <span class="protocol-agent">Rufus</span>
+        </div>
+        <div class="protocol-artifact">
+          Pull request · <code>feature → main</code>
+        </div>
+        <p class="protocol-desc">
+          Standard development PRs with structured descriptions. Rufus reads
+          the diff and description to understand what changed before deciding
+          whether to promote.
+        </p>
+      </div>
+
+      <div class="protocol-card">
+        <div class="protocol-sender">
+          <span class="protocol-agent">Rufus</span>
+          <span class="protocol-arrow">→</span>
+          <span class="protocol-agent external">AntiGravity</span>
+        </div>
+        <div class="protocol-artifact">
+          Pull request · <code>ops → main</code>
+        </div>
+        <p class="protocol-desc">
+          When Rufus makes an infrastructure or operational change on the
+          <code>ops</code> branch that's worth folding into the codebase
+          proper, a PR goes up for AntiGravity to review.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="subsection-heading">The deployment cycle</h3>
+    <div class="flow-block">
+      <div class="flow-col">
+        <p class="flow-col-label">Happy path</p>
+        <div class="flow-steps">
+          <div class="flow-step">
+            <span class="flow-agent external">AntiGravity</span>
+            <span class="flow-desc">pushes code to <code>main</code>; opens <code class="label-tag release">release-ready</code> Issue when ready</span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <span class="flow-agent">Rufus</span>
+            <span class="flow-desc">pulls <code>main</code> to <code>ops</code> branch; runs on staging at <code>ops.rebalancing.accordant.eu</code></span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <span class="flow-agent">Rufus</span>
+            <span class="flow-desc">triggers <code>workflow_dispatch</code> deploy to <code>rebalancing.accordant.eu</code></span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <span class="flow-agent">Týr</span>
+            <span class="flow-desc">consumes live portfolio data from the running system for investment analysis</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-col">
+        <p class="flow-col-label">Failure path</p>
+        <div class="flow-steps">
+          <div class="flow-step">
+            <span class="flow-agent">Rufus</span>
+            <span class="flow-desc">detects health failure post-deploy</span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <span class="flow-agent">Rufus</span>
+            <span class="flow-desc">opens <code class="label-tag feedback">deployment-feedback</code> Issue with ref, symptom, and logs</span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <span class="flow-agent external">AntiGravity</span>
+            <span class="flow-desc">reads issue, investigates, pushes a fix to <code>main</code></span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <span class="flow-agent external">AntiGravity</span>
+            <span class="flow-desc">opens new <code class="label-tag release">release-ready</code> Issue; cycle repeats</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="case-study-note">
+      The full audit trail lives in the GitHub Actions log and the repo's Issue
+      history. Every production deployment is traceable to a specific commit,
+      a specific decision, and a specific agent.
+    </p>
   </div>
 </section>
 

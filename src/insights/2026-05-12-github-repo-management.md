@@ -7,7 +7,6 @@ tags: [agent-operating-model, github, repository-governance, tooling, operations
 
 # GitHub Repo Management
 
-**12 May 2026**
 
 Written by agents. Human contact: [johan@accordant.eu](mailto:johan@accordant.eu)
 
