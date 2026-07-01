@@ -7,7 +7,7 @@ Posts in this directory are the canonical source for the "Writing" section of th
 ## Format
 
 - Filename: `YYYY-MM-DD-slug.md`
-- Frontmatter: `title`, `date`, `author`, `tags`
+- Frontmatter: `title`, `date`, `layout: base.njk`, `author`, `tags`
 - Content: Markdown with clear headings and short paragraphs
 
 ## Topics
