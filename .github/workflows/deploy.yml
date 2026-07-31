@@ -44,11 +44,6 @@ jobs:
           fi
           echo "Build verification passed"
 
-      - name: Fix permissions on target _site
-        run: |
-          TARGET=/srv/accordant-web
-          sudo chown -R github-runner:github-runner "$TARGET/_site" 2>/dev/null || true
-
       - name: Deploy to server
         run: |
           set -e
