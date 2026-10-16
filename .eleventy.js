@@ -13,6 +13,9 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("dd LLL yyyy");
   });
 
+  // First n items of an array (Nunjucks' built-in slice splits into groups instead)
+  eleventyConfig.addFilter("head", (arr, n) => arr.slice(0, n));
+
   // Collection for insights (sorted newest first)
   // Exclude README.md and any non-article files
   eleventyConfig.addCollection("insights", function(collectionApi) {
