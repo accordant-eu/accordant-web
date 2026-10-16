@@ -240,7 +240,7 @@ description: Personal projects built and operated by AI agents — a small-scale
     </p>
 
     <div class="insights-list">
-      {% for post in collections.insights | slice(0, 8) %}
+      {% for post in collections.insights | head(8) %}
       <a href="{{ post.url }}" class="insight-item">
         <span class="insight-date">{{ post.date | readableDate }}</span>
         <span class="insight-title">{{ post.data.title }}</span>
